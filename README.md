@@ -1,6 +1,8 @@
-# DevOps Agent Skill Family
+# DevOps Agent Skills
 
-A comprehensive suite of Claude Code skills that transform AI from a code generator into a **full development team**.
+Transform Claude Code or OpenClaw from a code generator into a **full development team**. 9 specialized skills covering every phase of the development lifecycle.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## The Skill Family
 
@@ -16,94 +18,90 @@ A comprehensive suite of Claude Code skills that transform AI from a code genera
 | **Risk Manager** | `/risk [plan]` | Risk Analyst / SRE Mindset |
 | **Deployer** | `/deploy [target]` | DevOps Engineer / Release Manager |
 
-## Workflow
+## Development Workflow
 
 ```
 ┌─────────────┐
-│  Architect  │ ← Strategic vision, system design
+│  Architect  │ ← Strategic vision, system design, Mermaid diagrams
 └──────┬──────┘
        ▼
 ┌─────────────┐
-│   Planner   │ ← Task breakdown, sprint planning
+│   Planner   │ ← Task breakdown, sprint backlogs, dependencies
 └──────┬──────┘
        ▼
 ┌─────────────┐
-│  Designer   │ ← API design, data models, schemas
+│  Designer   │ ← API specs, data models, interfaces
 └──────┬──────┘
        ▼
 ┌─────────────┐
-│   Builder   │ ← Implementation, clean code
+│   Builder   │ ← Clean code, tests, error handling
 └──────┬──────┘
        ▼
 ┌─────────────┐
-│  Reviewer   │ ← Code review, quality gates
+│  Reviewer   │ ← Security, quality, BLOCK/WARN/SUGGEST
 └──────┬──────┘
        ▼
 ┌─────────────┐
-│   Tester    │ ← Test strategy, TDD, coverage
+│   Tester    │ ← TDD, 80%+ coverage, unit/integration/E2E
 └──────┬──────┘
        ▼
 ┌─────────────┐
-│   Fixer     │ ← Debugging, root cause analysis
+│   Fixer     │ ← Root cause analysis, reproducible bugs
 └──────┬──────┘
        ▼
 ┌─────────────┐
-│  Deployer   │ ← CI/CD, deployment, rollback
+│  Deployer   │ ← Blue/green, canary, rollback, monitoring
 └─────────────┘
-```
-
-## Directory Structure
-
-```
-devops-agent-skills/
-├── README.md
-├── architect/
-│   └── SKILL.md
-├── planner/
-│   └── SKILL.md
-├── builder/
-│   └── SKILL.md
-├── designer/
-│   └── SKILL.md
-├── reviewer/
-│   └── SKILL.md
-├── tester/
-│   └── SKILL.md
-├── fixer/
-│   └── SKILL.md
-├── risk-manager/
-│   └── SKILL.md
-└── deployer/
-    └── SKILL.md
 ```
 
 ## Installation
 
-### Option 1: Clone and Copy All
+### Download
+
+Download `devops-agent-skills.zip` from this repo.
+
+### Claude Code
 
 ```bash
-# Clone this repo
-git clone https://github.com/YOUR_USERNAME/devops-agent-skills.git
-
-# Copy all skills to Claude Code
-cp -r architect planner builder designer risk-manager fixer reviewer tester deployer ~/.claude/skills/
+unzip devops-agent-skills.zip
+cp -r architect-skill/claude-code/* ~/.claude/skills/
 ```
 
-### Option 2: Per-Skill
-
-Copy only what you need:
+### OpenClaw
 
 ```bash
-cp -r architect ~/.claude/skills/
-cp -r planner ~/.claude/skills/
-# etc.
+unzip devops-agent-skills.zip
+cp -r architect-skill/openclaw/* ~/.openclaw/agents/YOUR_AGENT/agent/skills/
+openclaw gateway restart
 ```
 
-## Usage
+### OpenClaw Agent Setup
+
+Add skills to your agent's `agent.json`:
+
+```json
+{
+  "skills": [
+    "architect",
+    "planner",
+    "builder",
+    "designer",
+    "reviewer",
+    "tester",
+    "fixer",
+    "risk-manager",
+    "deployer"
+  ]
+}
+```
+
+Then restart: `openclaw gateway restart`
+
+## Usage Examples
 
 ```
-You: /architect Agent research platform
-AI: [Runs 4-Step Vision Loop]
+You: /architect betting research platform
+AI: [4-Step Vision Loop]
     - Vision Statement + 3 KPIs
     - Conservative/Innovative/Moonshot comparison
     - Mermaid architecture diagram
@@ -111,84 +109,119 @@ AI: [Runs 4-Step Vision Loop]
 AI: "Which approach should we prototype first?"
 
 You: /plan MVP for conservative approach
-AI: [Breaks down into sprint backlog]
-    - Task breakdown with owners
+AI: [Task breakdown with sprint backlog]
     - Critical path identified
+    - Owner assignments
     - Sprint 1, 2, 3 defined
 
 You: /design user authentication API
-AI: [Creates API specification]
-    - REST endpoints
-    - Request/Response schemas
+AI: [API specification]
+    - REST endpoints with schemas
+    - Request/response types
     - Error codes
     - Data model
 
 You: /build user authentication
-AI: [Implements from spec]
-    - Clean code following conventions
-    - Tests added
+AI: [Implementation]
+    - Clean code from spec
+    - Unit tests
     - Ready for review
 
 You: /review authentication implementation
-AI: [Reviews code]
+AI: [Code review]
     - BLOCK/WARN/SUGGEST ratings
-    - Security checks
-    - Edge cases checked
+    - Security scan
+    - Edge case analysis
 
 You: /test authentication
-AI: [Sets up test strategy]
-    - Unit tests (80%+ coverage)
-    - Integration tests
+AI: [Test suite]
+    - 80%+ coverage
+    - Unit + integration tests
     - E2E smoke tests
 
 You: /fix login returning 500
-AI: [Debugs systematically]
-    - Reproduces issue
-    - Finds root cause
-    - Applies fix with test
+AI: [Debugging]
+    - Issue reproduced
+    - Root cause found
+    - Fix with regression test
 
 You: /deploy to production
-AI: [Deploys safely]
+AI: [Safe deployment]
     - Pre-deploy checks
-    - Blue/green or canary deploy
-    - Smoke tests
+    - Blue/green strategy
     - Rollback plan ready
 ```
 
-## Skill Descriptions
+## Directory Structure
+
+```
+devops-agent-skills/
+├── README.md
+├── devops-agent-skills.zip    # Download this
+├── claude-code/              # Claude Code skills
+│   ├── architect.md
+│   ├── planner.md
+│   ├── designer.md
+│   ├── builder.md
+│   ├── reviewer.md
+│   ├── tester.md
+│   ├── fixer.md
+│   ├── risk-manager.md
+│   └── deployer.md
+└── openclaw/                 # OpenClaw skills
+    ├── architect.md
+    ├── planner.md
+    ├── designer.md
+    ├── builder.md
+    ├── reviewer.md
+    ├── tester.md
+    ├── fixer.md
+    ├── risk-manager.md
+    └── deployer.md
+```
+
+## Platform Support
+
+| Platform | Format | Install Location |
+|----------|--------|-----------------|
+| Claude Code | YAML frontmatter | `~/.claude/skills/` |
+| OpenClaw | Simple markdown | `~/.openclaw/agents/AGENT/agent/skills/` |
+
+## Skill Details
 
 ### Architect
-Strategic thinking and system design. Creates high-level vision, compares approaches (Conservative/Innovative/Moonshot), designs architecture with Mermaid diagrams, and defines execution roadmaps.
+Strategic system design with 4-Step Vision Loop. Creates vision statements, KPIs, approach comparisons (Conservative/Innovative/Moonshot), Mermaid diagrams, and phased roadmaps.
 
 ### Planner
-Task breakdown and sprint planning. Converts goals into actionable tasks, identifies dependencies, sequences work, and creates sprint backlogs.
+Task breakdown and sprint planning. Converts goals to actionable backlogs, identifies critical paths, sequences dependencies, estimates sizes (XS-XL).
 
 ### Designer
-API, data model, and interface design. Creates schemas, defines REST endpoints, designs database structures, and specifies UI components.
+API, data model, and interface design. Creates REST specs, TypeScript interfaces, database schemas, and component contracts.
 
 ### Builder
-Implementation from specs. Writes clean, maintainable code following project conventions, with tests and proper error handling.
+Implementation from specs. Writes clean, maintainable code with tests, proper error handling, and project convention adherence.
 
 ### Reviewer
-Code review and quality assurance. Inspects PRs for correctness, security, performance, and maintainability. Rates issues BLOCK/WARN/SUGGEST/NIT.
+Code quality gatekeeper. Rates issues BLOCK/WARN/SUGGEST/NIT. Checks correctness, security, performance, and maintainability.
 
 ### Tester
-Test strategy and implementation. Sets up test pyramids, writes unit/integration/E2E tests, and ensures >80% coverage.
+Test strategy and TDD implementation. Sets up test pyramids, ensures 80%+ coverage, writes unit/integration/E2E tests.
 
 ### Fixer
-Debugging and problem resolution. Reproduces issues, finds root causes, implements fixes, and adds regression tests.
+Systematic debugging. Reproduces issues, finds root causes, implements fixes, adds regression tests.
 
 ### Risk Manager
-Risk identification and mitigation. Identifies technical/people/process/external risks, assesses likelihood and impact, and creates contingency plans.
+Proactive risk identification. Categorizes technical/people/process/external risks, creates mitigation plans and contingencies.
 
 ### Deployer
-Deployment and release management. Executes blue/green, canary, or direct deployments with rollback plans and post-deploy monitoring.
+Safe deployment orchestration. Blue/green and canary strategies, rollback procedures, smoke tests, post-deploy monitoring.
 
 ## Requirements
 
-- Claude Code CLI
-- Mermaid.js support (for diagrams in compatible renderers)
+- **Claude Code:** Claude Code CLI
+- **OpenClaw:** OpenClaw CLI with configured agent
+- Mermaid.js (for diagram rendering in compatible environments)
 
 ## License
 
-MIT
+MIT License - feel free to use, modify, and distribute.

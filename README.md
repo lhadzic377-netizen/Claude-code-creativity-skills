@@ -102,7 +102,7 @@ cp -r planner ~/.claude/skills/
 ## Usage
 
 ```
-You: /architect betting research platform
+You: /architect Agent research platform
 AI: [Runs 4-Step Vision Loop]
     - Vision Statement + 3 KPIs
     - Conservative/Innovative/Moonshot comparison
